@@ -43,7 +43,8 @@ void BasicPluginAudioProcessorEditor::paint (Graphics& g)
 
     g.setColour (Colours::white);
     g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), Justification::centred, 1);
+
+    g.drawFittedText("Midi Volume", 0, 0, getWidth(), 30, Justification::centred, 1);
 }
 
 void BasicPluginAudioProcessorEditor::resized()
