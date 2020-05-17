@@ -23,6 +23,9 @@ public:
     ~BasicPluginAudioProcessor();
 
     //==============================================================================
+    float noteOnVel;
+
+    //==============================================================================
     void prepareToPlay (double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
