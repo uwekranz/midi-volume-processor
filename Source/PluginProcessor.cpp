@@ -133,31 +133,24 @@ void BasicPluginAudioProcessor::processBlock (AudioBuffer<float>& buffer, MidiBu
 {
     buffer.clear();
 
-    MidiBuffer processedMidi;
-    int time;
-    MidiMessage m;
+    juce::MidiBuffer processedMidi;
 
-    for (MidiBuffer::Iterator i(midiMessages); i.getNextEvent(m, time);)
+    for (const auto metadata : midiMessages)
     {
-        if (m.isNoteOn())
+        auto message = metadata.getMessage();
+        const auto time = metadata.samplePosition;
+
+        if (message.isNoteOn())
         {
-            uint8 newVel = (uint8)noteOnVel;
-            m = MidiMessage::noteOn(m.getChannel(), m.getNoteNumber(), newVel);
-        }
-        else if (m.isNoteOff())
-        {
-        }
-        else if (m.isAftertouch())
-        {
-        }
-        else if (m.isPitchWheel())
-        {
+            message = juce::MidiMessage::noteOn (message.getChannel(),
+                                                 message.getNoteNumber(),
+                                                 (juce::uint8) noteOnVel);
         }
 
-        processedMidi.addEvent(m, time);
+        processedMidi.addEvent (message, time);
     }
 
-    midiMessages.swapWith(processedMidi);
+    midiMessages.swapWith (processedMidi);
 }
 
 //==============================================================================
