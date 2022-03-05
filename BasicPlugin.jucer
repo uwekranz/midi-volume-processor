@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="ucj98f" name="BasicPlugin" projectType="audioplug" jucerVersion="5.4.7"
-              pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn">
+<JUCERPROJECT id="ucj98f" name="BasicPlugin" projectType="audioplug" pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn"
+              displaySplashScreen="1" jucerFormatVersion="1">
   <MAINGROUP id="qEBBOu" name="BasicPlugin">
     <GROUP id="{83EFEED4-EA8A-7673-3435-EDD916B72FA7}" name="Source">
       <FILE id="ZZwveI" name="PluginProcessor.cpp" compile="1" resource="0"
