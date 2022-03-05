@@ -17,7 +17,8 @@
 /**
 */
 class BasicPluginAudioProcessorEditor  : public AudioProcessorEditor,
-                                         private Slider::Listener
+                                         private Slider::Listener,
+                                         private ToggleButton::Listener
 {
 public:
     BasicPluginAudioProcessorEditor (BasicPluginAudioProcessor&);
@@ -29,12 +30,14 @@ public:
 
 private:
     void sliderValueChanged(Slider* slider) override;
-
+    void buttonClicked(Button* button) override;
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     BasicPluginAudioProcessor& processor;
 
     Slider midiVolume;
+
+    TextButton midiMute;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BasicPluginAudioProcessorEditor)
 };

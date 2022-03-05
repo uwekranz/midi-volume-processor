@@ -32,6 +32,13 @@ BasicPluginAudioProcessorEditor::BasicPluginAudioProcessorEditor (BasicPluginAud
 
     // add the listener to the slider
     midiVolume.addListener(this);
+
+    // add mute button
+    midiMute.setButtonText("Mute");
+    midiMute.setColour(juce::TextButton::ColourIds::buttonOnColourId, juce::Colour(1,1,1));
+    midiMute.setColour(juce::TextButton::ColourIds::buttonColourId, juce::Colour(10,10,10));
+    addAndMakeVisible(&midiMute);
+    midiMute.addListener(this);
 }
 
 BasicPluginAudioProcessorEditor::~BasicPluginAudioProcessorEditor()
@@ -39,6 +46,26 @@ BasicPluginAudioProcessorEditor::~BasicPluginAudioProcessorEditor()
 }
 
 //==============================================================================
+
+void BasicPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
+{
+    processor.noteOnVel = midiVolume.getValue();
+}
+
+void BasicPluginAudioProcessorEditor::buttonClicked(juce::Button* button) {
+    button->setToggleState(!button->getToggleState(),juce::dontSendNotification);
+
+    if(button->getToggleState()) {
+        processor.noteOnVel = 0;
+        midiMute.setButtonText("Unmute");
+    }
+    else {
+        processor.noteOnVel = midiVolume.getValue();
+        midiMute.setState(juce::Button::ButtonState::buttonNormal);
+        midiMute.setButtonText("Mute");
+    }
+}
+
 void BasicPluginAudioProcessorEditor::paint (Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
@@ -57,9 +84,6 @@ void BasicPluginAudioProcessorEditor::resized()
 
     // sets the position and size of the slider with arguments (x, y, width, height)
     midiVolume.setBounds(40, 30, 20, getHeight() - 60);
-}
 
-void BasicPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
-{
-    processor.noteOnVel = midiVolume.getValue();
+    midiMute.setBounds(80, 40, 50, 50);
 }
