@@ -35,35 +35,17 @@ BasicPluginAudioProcessorEditor::BasicPluginAudioProcessorEditor (BasicPluginAud
 
     // add mute button
     midiMute.setButtonText("Mute");
-    midiMute.setColour(juce::TextButton::ColourIds::buttonOnColourId, juce::Colour(1,1,1));
-    midiMute.setColour(juce::TextButton::ColourIds::buttonColourId, juce::Colour(10,10,10));
+    midiMute.onClick = [this] { toggleState(); };
     addAndMakeVisible(&midiMute);
-    midiMute.addListener(this);
 }
 
-BasicPluginAudioProcessorEditor::~BasicPluginAudioProcessorEditor()
-{
-}
+BasicPluginAudioProcessorEditor::~BasicPluginAudioProcessorEditor() = default;
 
 //==============================================================================
 
 void BasicPluginAudioProcessorEditor::sliderValueChanged(Slider* slider)
 {
     processor.noteOnVel = midiVolume.getValue();
-}
-
-void BasicPluginAudioProcessorEditor::buttonClicked(juce::Button* button) {
-    button->setToggleState(!button->getToggleState(),juce::dontSendNotification);
-
-    if(button->getToggleState()) {
-        processor.noteOnVel = 0;
-        midiMute.setButtonText("Unmute");
-    }
-    else {
-        processor.noteOnVel = midiVolume.getValue();
-        midiMute.setState(juce::Button::ButtonState::buttonNormal);
-        midiMute.setButtonText("Mute");
-    }
 }
 
 void BasicPluginAudioProcessorEditor::paint (Graphics& g)
@@ -86,4 +68,8 @@ void BasicPluginAudioProcessorEditor::resized()
     midiVolume.setBounds(40, 30, 20, getHeight() - 60);
 
     midiMute.setBounds(80, 40, 50, 50);
+}
+
+void BasicPluginAudioProcessorEditor::toggleState() {
+    processor.noteOnVel = midiMute.getToggleState() ? 0 : midiVolume.getValue();
 }
