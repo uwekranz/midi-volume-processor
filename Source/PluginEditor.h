@@ -12,6 +12,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "KnobLookAndFeel.h"
 
 //==============================================================================
 /**
@@ -35,6 +36,7 @@ private:
     BasicPluginAudioProcessor& processor;
 
     Slider midiVolume;
+    KnobLookAndFeel knobLookAndFeel;
 
     ToggleButton midiMute;
 

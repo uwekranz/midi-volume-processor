@@ -5,12 +5,16 @@
               pluginCharacteristicsValue="pluginIsMidiEffectPlugin,pluginProducesMidiOut,pluginWantsMidiIn">
   <MAINGROUP id="qEBBOu" name="BasicPlugin">
     <GROUP id="{83EFEED4-EA8A-7673-3435-EDD916B72FA7}" name="Source">
+      <FILE id="c7h1d2" name="KnobLookAndFeel.cpp" compile="1" resource="0"
+            file="Source/KnobLookAndFeel.cpp"/>
       <FILE id="ZZwveI" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
       <FILE id="pebnVj" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
       <FILE id="WR1G6J" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
+      <FILE id="qwfZ9q" name="KnobLookAndFeel.h" compile="0" resource="0"
+            file="Source/KnobLookAndFeel.h"/>
       <FILE id="eTBgJ4" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>
